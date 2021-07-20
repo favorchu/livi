@@ -1,11 +1,11 @@
 package com.livi.demo.controller.credircard;
 
-import com.livi.demo.common.model.CompanyTypeEnum;
 import com.livi.demo.common.model.RestRequestVO;
+import com.livi.demo.common.model.enums.CompanyType;
 
 public class CalculatorReqVO implements RestRequestVO {
 	private Integer numberOfEmployees;
-	private CompanyTypeEnum companyType;
+	private CompanyType companyType;
 	private Integer numberOfYearsOperated;
 
 	public Integer getNumberOfEmployees() {
@@ -16,11 +16,11 @@ public class CalculatorReqVO implements RestRequestVO {
 		this.numberOfEmployees = numberOfEmployees;
 	}
 
-	public CompanyTypeEnum getCompanyType() {
+	public CompanyType getCompanyType() {
 		return companyType;
 	}
 
-	public void setCompanyType(CompanyTypeEnum companyType) {
+	public void setCompanyType(CompanyType companyType) {
 		this.companyType = companyType;
 	}
 

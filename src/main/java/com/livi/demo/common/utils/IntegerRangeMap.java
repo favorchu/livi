@@ -1,4 +1,4 @@
-package com.livi.demo.common.Utils;
+package com.livi.demo.common.utils;
 
 import java.util.LinkedHashMap;
 
@@ -6,6 +6,12 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import com.livi.demo.exception.BusinessRuntimeExcepion;
 
+/**
+ * 
+ * @author favorchu
+ *
+ * @param <T> Value type
+ */
 public class IntegerRangeMap<T> {
 
 	/**
