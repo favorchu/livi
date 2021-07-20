@@ -24,7 +24,7 @@ import com.livi.demo.common.model.enums.SysFunc;
 public @interface RequestAudit {
 	/**
 	 * Perform CSRF checking on the HTTP request header. <br />
-	 * The Header named as JWT_TOKEN
+	 * 
 	 * 
 	 * @return
 	 */

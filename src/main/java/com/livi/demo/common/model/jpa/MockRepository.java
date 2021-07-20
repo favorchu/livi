@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
+import com.livi.demo.DemoConstant;
 import com.livi.demo.common.model.pojo.TaConfigWithCategory;
 import com.livi.demo.common.model.pojo.TaConfigWithRange;
 import com.livi.demo.common.model.pojo.TaUser;
@@ -79,11 +81,24 @@ public class MockRepository {
 	}
 
 	/**
+	 * Get one user by user ID, Cache is used to reduce the loading to database
+	 * 
+	 * @param userId
+	 * @return
+	 */
+
+	@Cacheable(value = DemoConstant.CACHE_30SEC, keyGenerator = DemoConstant.CACHE_DEFUALT_KEY_GEN)
+	public TaUser getUserByIDWithCache(String userId) {
+		return getUserByID(userId);
+	}
+
+	/**
 	 * Get one user by user ID
 	 * 
 	 * @param userId
 	 * @return
 	 */
+
 	public TaUser getUserByID(String userId) {
 		for (TaUser taUser : taUsers)
 			if (StringUtils.equalsIgnoreCase(userId, taUser.getUserId()))
