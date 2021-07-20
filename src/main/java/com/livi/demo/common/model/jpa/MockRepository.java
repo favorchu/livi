@@ -2,6 +2,7 @@ package com.livi.demo.common.model.jpa;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.cache.annotation.Cacheable;
@@ -66,7 +67,7 @@ public class MockRepository {
 	 */
 	public List<TaConfigWithCategory> getConfigsWithCategoryByName(String configName) {
 		return taConfigsByCategory.stream()//
-				.filter(c -> StringUtils.equalsIgnoreCase(c.getConfigName(), configName)).toList();
+				.filter(c -> StringUtils.equalsIgnoreCase(c.getConfigName(), configName)).collect(Collectors.toList());
 	}
 
 	/**
@@ -77,7 +78,7 @@ public class MockRepository {
 	 */
 	public List<TaConfigWithRange> getConfigsWithRangeByName(String configName) {
 		return taConfigsByRange.stream()//
-				.filter(c -> StringUtils.equalsIgnoreCase(c.getConfigName(), configName)).toList();
+				.filter(c -> StringUtils.equalsIgnoreCase(c.getConfigName(), configName)).collect(Collectors.toList());
 	}
 
 	/**
