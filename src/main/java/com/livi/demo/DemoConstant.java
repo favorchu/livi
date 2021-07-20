@@ -36,7 +36,7 @@ public class DemoConstant {
 	/**
 	 * JWT
 	 */
-	public static final String JWT_HEADER_NAME = "auth-token";
+	public static final String JWT_HEADER_NAME = "access-token";
 	public static final String JWT_CLAIM_CODE = "code";
 	public static final String JWT_CLAIM_SUBJECT = "subject";
 
