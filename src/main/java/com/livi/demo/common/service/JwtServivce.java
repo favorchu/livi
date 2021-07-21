@@ -29,7 +29,7 @@ public class JwtServivce extends AbsService {
 	public DecodedJWT decodeAuthenJWT(String jwt) {
 		Algorithm algorithm = getJWTAlgo();
 		// Reusable verifier instance
-		JWTVerifier verifier = JWT.require(algorithm).withIssuer(DemoConstant.JWT_HEADER_NAME).build();
+		JWTVerifier verifier = JWT.require(algorithm).withIssuer(DemoConstant.JWT_HEADER_ACCESS_TOKEN).build();
 		DecodedJWT decodedJWT = verifier.verify(jwt);
 		return decodedJWT;
 	}
@@ -43,7 +43,7 @@ public class JwtServivce extends AbsService {
 		String jwt = JWT.create()//
 				.withClaim(DemoConstant.JWT_CLAIM_SUBJECT, subject)//
 				.withClaim(DemoConstant.JWT_CLAIM_CODE, cryptoService.encrypt(code))//
-				.withIssuer(DemoConstant.JWT_HEADER_NAME)//
+				.withIssuer(DemoConstant.JWT_HEADER_ACCESS_TOKEN)//
 				.withExpiresAt(DateUtils.addMinutes(new Date(), Math.abs(lifeMinute)))//
 				.sign(algorithm);
 		return jwt;
@@ -53,7 +53,7 @@ public class JwtServivce extends AbsService {
 		Algorithm algorithm = getJWTAlgo();
 		String jwt = JWT.create()//
 				.withClaim(DemoConstant.JWT_CLAIM_CODE, cryptoService.encrypt(code))//
-				.withIssuer(DemoConstant.JWT_HEADER_NAME)//
+				.withIssuer(DemoConstant.JWT_HEADER_ACCESS_TOKEN)//
 				// Token will be expire in 1 hrs
 				.withExpiresAt(DateUtils.addMinutes(new Date(), Math.abs(lifeMinute)))//
 				.sign(algorithm);
@@ -71,7 +71,7 @@ public class JwtServivce extends AbsService {
 	public boolean verifySubjectJwt(String jwt, String subject, String code) {
 		Algorithm algorithm = getJWTAlgo();
 		// Reusable verifier instance
-		JWTVerifier verifier = JWT.require(algorithm).withIssuer(DemoConstant.JWT_HEADER_NAME).build();
+		JWTVerifier verifier = JWT.require(algorithm).withIssuer(DemoConstant.JWT_HEADER_ACCESS_TOKEN).build();
 		DecodedJWT decodedJWT = verifier.verify(jwt);
 		String jwtSubject = decodedJWT.getClaim(DemoConstant.JWT_CLAIM_SUBJECT).asString();
 		String jwtCode = cryptoService.decrypt(decodedJWT.getClaim(DemoConstant.JWT_CLAIM_CODE).asString());
@@ -82,7 +82,7 @@ public class JwtServivce extends AbsService {
 	public String decryptSecretJwt(String jwt) {
 		Algorithm algorithm = getJWTAlgo();
 		// Reusable verifier instance
-		JWTVerifier verifier = JWT.require(algorithm).withIssuer(DemoConstant.JWT_HEADER_NAME).build();
+		JWTVerifier verifier = JWT.require(algorithm).withIssuer(DemoConstant.JWT_HEADER_ACCESS_TOKEN).build();
 		DecodedJWT decodedJWT = verifier.verify(jwt);
 		return cryptoService.decrypt(decodedJWT.getClaim(DemoConstant.JWT_CLAIM_CODE).asString());
 	}

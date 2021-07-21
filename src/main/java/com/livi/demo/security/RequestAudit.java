@@ -22,13 +22,6 @@ import com.livi.demo.common.model.enums.SysFunc;
 @Target({ ElementType.METHOD, ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface RequestAudit {
-	/**
-	 * Perform CSRF checking on the HTTP request header. <br />
-	 * 
-	 * 
-	 * @return
-	 */
-	boolean checkCsrf() default false;
 
 	/**
 	 * Permission needed to perform the following actions

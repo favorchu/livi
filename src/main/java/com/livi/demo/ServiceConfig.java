@@ -109,11 +109,8 @@ public class ServiceConfig {
 
 			@Override
 			public Operation customize(Operation operation, HandlerMethod handlerMethod) {
-//				Parameter parameterHeader = new Parameter().in(ParameterIn.HEADER.toString())
-//						.schema(new StringSchema().name(DemoConstant.JWT_HEADER_NAME)).required(false)
-//						.description("Custom Header To be Pass");
 				Parameter parameterHeader = new Parameter().in(ParameterIn.HEADER.toString())
-						.name(DemoConstant.JWT_HEADER_NAME).description("JWT provided by login")
+						.name(DemoConstant.JWT_HEADER_ACCESS_TOKEN).description("JWT provided by login")
 						.schema(new StringSchema()).example("xxxx.xxxx").required(false);
 				operation.addParametersItem(parameterHeader);
 				return operation;
@@ -122,21 +119,4 @@ public class ServiceConfig {
 
 	}
 
-//	@Bean
-//	public Docket docket() {
-//		return new Docket(DocumentationType.OAS_30).forCodeGeneration(true)
-//				.globalRequestParameters(globalParameterList()).select()
-//				.apis(RequestHandlerSelectors.withClassAnnotation(RestController.class)).paths(PathSelectors.any())
-//				.build();
-//	}
-//
-//	private List<RequestParameter> globalParameterList() {
-//		return Arrays.asList(new RequestParameterBuilder()//
-//				.name(DemoConstant.JWT_HEADER_NAME)//
-//				.in(ParameterType.HEADER)
-//				.query(q -> q.defaultValue("")
-//						.model(modelSpecificationBuilder -> modelSpecificationBuilder.scalarModel(ScalarType.STRING)))
-//				.required(false).build());
-//
-//	}
 }

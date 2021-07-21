@@ -3,14 +3,14 @@ package com.livi.demo.common.model.pojo;
 public class TaUser {
 
 	private String userId;
-	private String oauthToekn;
+	private String oauthToken;
 	private String role;
 	private String password;
 
-	public TaUser(String userId, String oauthToekn, String role, String password) {
+	public TaUser(String userId, String oauthToken, String role, String password) {
 		super();
 		this.userId = userId;
-		this.oauthToekn = oauthToekn;
+		this.oauthToken = oauthToken;
 		this.role = role;
 		this.password = password;
 	}
@@ -23,12 +23,12 @@ public class TaUser {
 		this.userId = userId;
 	}
 
-	public String getOauthToekn() {
-		return oauthToekn;
+	public String getOauthToken() {
+		return oauthToken;
 	}
 
-	public void setOauthToekn(String oauthToekn) {
-		this.oauthToekn = oauthToekn;
+	public void setOauthToken(String oauthToken) {
+		this.oauthToken = oauthToken;
 	}
 
 	public String getRole() {
