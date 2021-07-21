@@ -5,8 +5,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.io.UnsupportedEncodingException;
 
-import org.apache.commons.lang3.math.NumberUtils;
-
 import com.jayway.jsonpath.JsonPath;
 
 import io.cucumber.java.en.Then;

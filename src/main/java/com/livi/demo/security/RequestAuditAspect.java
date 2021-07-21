@@ -20,7 +20,6 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.auth0.jwt.interfaces.DecodedJWT;
 import com.livi.demo.DemoConstant;
 import com.livi.demo.common.model.enums.SysFunc;
 import com.livi.demo.common.model.jpa.MockRepository;
