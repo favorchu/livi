@@ -8,6 +8,8 @@ import com.livi.demo.exception.BusinessRuntimeExcepion;
 
 /**
  * 
+ * A range map to define the range and expected return value
+ * 
  * @author favorchu
  *
  * @param <T> Value type

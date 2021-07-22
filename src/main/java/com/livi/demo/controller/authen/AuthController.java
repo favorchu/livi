@@ -17,9 +17,16 @@ import com.livi.demo.controller.AbsRestController;
 import com.livi.demo.exception.BusinessRuntimeExcepion;
 import com.livi.demo.security.RequestAudit;
 
+/**
+ * Simplified OAuth 2 implementation <br/>
+ * TODO change the symmetric key encryption to asymmetric
+ * 
+ * @author favorchu
+ *
+ */
 @RestController
 @RequestMapping("/auth/v1")
-public class AuthenController extends AbsRestController {
+public class AuthController extends AbsRestController {
 
 	private static final int TOKEN_LIFE = 60;
 
@@ -32,6 +39,12 @@ public class AuthenController extends AbsRestController {
 	@Autowired
 	private CryptoService cryptoService;
 
+	/**
+	 * Return the full set OAuth token
+	 * 
+	 * @param logReq
+	 * @return
+	 */
 	@RequestAudit
 	@RequestMapping(value = { "/login" }, method = { RequestMethod.POST })
 	public LoginRespVO login(@RequestBody LoginReqVO logReq) {
@@ -54,6 +67,12 @@ public class AuthenController extends AbsRestController {
 		return loginRespVO;
 	}
 
+	/**
+	 * Just refresh the access token with a predefined lift time
+	 * 
+	 * @param token
+	 * @return
+	 */
 	@RequestAudit
 	@RequestMapping(value = { "/refresh" }, method = { RequestMethod.POST })
 	public LoginRespVO login(@RequestParam("token") String token) {

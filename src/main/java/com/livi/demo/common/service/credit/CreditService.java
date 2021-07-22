@@ -18,6 +18,12 @@ import com.livi.demo.common.service.AbsService;
 import com.livi.demo.common.utils.IntegerRangeMap;
 import com.livi.demo.exception.BusinessRuntimeExcepion;
 
+/**
+ * Self explained by the class name
+ * 
+ * @author favorchu
+ *
+ */
 @Service
 public class CreditService extends AbsService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CreditService.class);

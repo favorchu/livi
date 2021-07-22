@@ -9,6 +9,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import com.livi.demo.common.model.enums.SysFunc;
+import com.livi.demo.security.prehandle.NoValidation;
+import com.livi.demo.security.prehandle.PreHandleCheck;
 
 /**
  * This annotation is going to be added at each request.<br />
@@ -29,5 +31,7 @@ public @interface RequestAudit {
 	 * @return
 	 */
 	SysFunc permission() default SysFunc.NONE;
+
+	Class<? extends PreHandleCheck> validator() default NoValidation.class;
 
 }

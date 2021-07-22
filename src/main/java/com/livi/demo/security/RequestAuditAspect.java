@@ -15,6 +15,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -28,8 +29,15 @@ import com.livi.demo.common.service.AbsService;
 import com.livi.demo.common.service.JwtServivce;
 import com.livi.demo.exception.UnauthenicatedException;
 import com.livi.demo.exception.UnauthorizedException;
+import com.livi.demo.security.prehandle.NoValidation;
+import com.livi.demo.security.prehandle.PreHandleCheck;
 
 /**
+ * This Annotation is expected to be addedd for all API, it provide : <br />
+ * audit trial support<br />
+ * Permission check on function and data <br/>
+ * Any other audit action for specific API
+ * 
  * @author favorchu
  *
  */
@@ -42,6 +50,9 @@ public class RequestAuditAspect extends AbsService {
 	private JwtServivce jwtServivce;
 	@Autowired
 	private MockRepository mockRepository;
+
+	@Autowired
+	private ApplicationContext appContext;
 
 	@Before("@annotation(com.livi.demo.security.RequestAudit)")
 	public void auditRequest(JoinPoint joinPoint) throws Throwable {
@@ -65,6 +76,12 @@ public class RequestAuditAspect extends AbsService {
 
 		// Permission check
 		checkPermission(user, auditRequest.permission());
+
+		// Further check required, e.g. checking accessibility of the target data.
+		if (!StringUtils.equals(auditRequest.validator().getSimpleName(), NoValidation.class.getSimpleName())) {
+			PreHandleCheck prehandle = appContext.getBean(auditRequest.validator());
+			prehandle.validate(user, joinPoint);
+		}
 
 	}
 

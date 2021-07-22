@@ -15,8 +15,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.web.method.HandlerMethod;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.google.common.cache.CacheBuilder;
+import com.livi.demo.security.RequestAuditInterceptor;
 
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.models.Operation;
@@ -31,7 +34,7 @@ import io.swagger.v3.oas.models.parameters.Parameter;
  */
 
 @Configuration
-public class ServiceConfig {
+public class ServiceConfig implements WebMvcConfigurer {
 	@Bean
 	public CacheManager cacheManager() {
 		SimpleCacheManager cacheManager = new SimpleCacheManager();
@@ -119,4 +122,12 @@ public class ServiceConfig {
 
 	}
 
+	@Bean
+	public RequestAuditInterceptor requestAuditInterceptor() {
+		return new RequestAuditInterceptor();
+	}
+
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(requestAuditInterceptor());
+	}
 }
